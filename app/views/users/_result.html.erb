@@ -1,0 +1,10 @@
+<% if @stock %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <strong><%= @stock.name %></strong> <small>(<%= @stock.ticker %>)</small>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= @stock.last_price %> USD</h5>
+    </div>
+  </div>
+<% end %>
