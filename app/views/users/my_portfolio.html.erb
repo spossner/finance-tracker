@@ -1,0 +1,17 @@
+<h1>My Portfolio</h1>
+<div class="search-area">
+  <h3>Search Stock</h3>
+  <%= form_with url: search_stock_path, local: true, method: :get do |f| %>
+    <div class="row">
+      <div class="col-9 input-group mb-3">
+        <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autodocus: true, class: "form-control form-control-lg" %>
+        <div class="input-group-append">
+          <%= button_tag type: :submit, class: "btn btn-success"  do %>
+            <%= fa_icon "search " %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap';
+@import "font-awesome";
 
 /**
  * NAVBAR
@@ -9,4 +10,11 @@
 
 .navbar-brand {
   letter-spacing: -1px;
+}
+
+/**
+ * MYPORTFOLIO
+ */
+.search-area {
+  padding-top: 50px;
 }
