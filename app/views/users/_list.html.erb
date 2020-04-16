@@ -1,0 +1,23 @@
+<div class="col-9">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Stocks</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% list.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td>User's stock as pills?</td>
+        <td><%= link_to "Remove",
+                        friendship_path(user),
+                        method: :delete, data: {confirm: "Are you sure?"},
+                        class: "btn btn-sm btn-warning" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

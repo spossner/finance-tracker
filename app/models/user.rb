@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :user_stocks
   has_many :stocks, through: :user_stocks
+  has_many :friendships
+  has_many :friends, through: :friendships
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,6 +17,10 @@ class User < ApplicationRecord
     stock = Stock.where(ticker: ticker_symbol).first
     return true unless stock
     return !stocks.where(id: stock.id).exists?
+  end
+
+  def can_add_friend?(friend)
+    self != friend && !(friends.include? friend)
   end
 
   def full_name

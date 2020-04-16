@@ -18,3 +18,14 @@
 .search-area {
   padding-top: 50px;
 }
+
+/**
+ * LISTS
+ */
+.on-hover {
+  opacity: 0;
+}
+
+.list-group-item-action:hover .on-hover, .on-hover:hover {
+  opacity: 1;
+}

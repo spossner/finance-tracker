@@ -22,4 +22,15 @@
       <% end %>
     </div>
   </div>
+<% elsif @users %>
+    <div class="list-group mb-3" style="width: 24rem;">
+      <% @users.each do |user| %>
+        <% if current_user.can_add_friend?(user) %>
+          <%= link_to friendships_path(user: current_user, friend: user), method: :post, class: "list-group-item list-group-item-action d-flex justify-content-between align-items-center on-hover-container" do %>
+            <%= user.full_name %>
+            <span class="badge badge-primary badge-pill on-hover">Add as friend</span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
 <% end %>
