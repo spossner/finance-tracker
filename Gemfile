@@ -24,6 +24,8 @@ gem 'devise-bootstrap-views', '~> 1.0'
 gem 'iex-ruby-client'
 gem "font-awesome-rails"
 
+gem 'awesome_print'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -35,8 +37,6 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'awesome_print'
-    # gem 'hirb'
 end
 
 group :development do
