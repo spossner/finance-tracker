@@ -6,14 +6,16 @@ class FriendshipsController < ApplicationController
       friendship = Friendship.create(user: current_user, friend: friend)
       if friendship.save
         flash[:notice] = "Successfully added #{friend.full_name} as friend"
-        redirect_to my_friends_path
       else
         flash[:alert] = "Error while adding #{friend.full_name} to your friends list"
-        redirect_to my_friends_path
       end
     else
       flash[:alert] = "Can not add unknown user #{params[:friend]} to your friends list"
-      redirect_to my_friends_path
+    end
+    if params[:user] # if user was given, go to users#show page with that user
+      redirect_to user_path(params[:user])
+    else # and to my portfolio otherwise
+      redirect_to my_portfolio_path
     end
   end
 

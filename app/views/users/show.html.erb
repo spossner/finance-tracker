@@ -1,0 +1,15 @@
+<h1>Show user</h1>
+<ul class="list-group mb-3" style="width: 24rem;">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <%= @user.full_name %>
+    <% if current_user.can_add_friend?(@user) %>
+      <%= link_to "Follow friend", friendships_path(user: @user, friend: @user), method: :post, class: "btn btn-sm btn-primary" %>
+    <% else %>
+      <span class="badge badge-secondary badge-pill">Already friend</span>
+    <% end %>
+  </li>
+</ul>
+
+<% if @user.stocks.present? %>
+  <%= render partial: 'stocks/list', object: @user.stocks %>
+<% end %>

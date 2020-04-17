@@ -12,13 +12,16 @@ class UserStocksController < ApplicationController
       @user_stock = UserStock.create(user: current_user, stock: new_stock)
       if @user_stock.save
         flash[:notice] = "Successfully added #{new_stock.name} (#{new_stock.ticker}) to your portfolio"
-        redirect_to my_portfolio_path
       else
         flash[:alert] = "Error while adding #{new_stock.name} (#{new_stock.ticker}) to your portfolio"
-        redirect_to my_portfolio_path
       end
     else
       flash[:alert] = "Unknown stock #{params[:ticker]}"
+    end
+
+    if params[:user] # if user was given, go to users#show page with that user
+      redirect_to user_path(params[:user])
+    else # and to my portfolio otherwise
       redirect_to my_portfolio_path
     end
   end

@@ -9,7 +9,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= @stock.last_price %> USD</h5>
       <% if current_user.under_stock_limit? && current_user.can_track_stock?(@stock.ticker) %>
-        <%= link_to 'add to portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker), method: :post, class: "btn btn-sm btn-primary" %>
+        <%= link_to 'add to portfolio', user_stocks_path(ticker: @stock.ticker), method: :post, class: "btn btn-sm btn-primary" %>
       <% else %>
         <span class="badge badge-secondary">
           You are already tracking
@@ -23,14 +23,16 @@
     </div>
   </div>
 <% elsif @users %>
-    <div class="list-group mb-3" style="width: 24rem;">
+    <ul class="list-group mb-3" style="width: 24rem;">
       <% @users.each do |user| %>
-        <% if current_user.can_add_friend?(user) %>
-          <%= link_to friendships_path(user: current_user, friend: user), method: :post, class: "list-group-item list-group-item-action d-flex justify-content-between align-items-center on-hover-container" do %>
-            <%= user.full_name %>
-            <span class="badge badge-primary badge-pill on-hover">Add as friend</span>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= link_to user.full_name, user_path(user) %>
+          <% if current_user.can_add_friend?(user) %>
+            <%= link_to "Follow friend", friendships_path(friend: user), method: :post, class: "btn btn-sm btn-primary" %>
+          <% else %>
+            <span class="badge badge-secondary badge-pill">Already friend</span>
           <% end %>
-        <% end %>
+        </li>
       <% end %>
-    </div>
+    </ul>
 <% end %>

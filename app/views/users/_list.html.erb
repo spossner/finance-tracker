@@ -3,15 +3,13 @@
     <thead>
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Stocks</th>
       <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
     <% list.each do |user| %>
       <tr>
-        <td><%= user.full_name %></td>
-        <td>User's stock as pills?</td>
+        <td><%= link_to user.full_name, user_path(user) %></td>
         <td><%= link_to "Remove",
                         friendship_path(user),
                         method: :delete, data: {confirm: "Are you sure?"},
