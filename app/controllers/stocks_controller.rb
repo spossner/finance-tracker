@@ -1,3 +1,5 @@
+require 'awesome_print'
+
 class StocksController < ApplicationController
   def search
     if params[:stock].present?
@@ -22,5 +24,21 @@ class StocksController < ApplicationController
         end
       end
     end
+  end
+
+  def refresh
+    if params[:user_id].present?
+      user = User.find(params[:user_id])
+      puts "Refresh prices of #{user.full_name}"
+      user.stocks.each do |stock|
+        stock.refresh_price
+      end
+    else
+      puts "Refreshing all prices"
+      Stock.all.each do |stock|
+        stock.refresh_price
+      end
+    end
+    redirect_to my_portfolio_path
   end
 end

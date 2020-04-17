@@ -1,4 +1,11 @@
-<h1>My Portfolio</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>My Portfolio</h1>
+  </div>
+  <div class="col-3 text-right">
+    <%= link_to "Refresh prices", refresh_prices_path(user_id: current_user.id), method: :post, class: "btn btn-primary" %>
+  </div>
+</div>
 <div class="search-area">
   <h3>Search Stock</h3>
   <%= form_with url: search_stock_path, method: :get do %>

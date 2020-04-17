@@ -7,7 +7,7 @@
       <strong><%= @stock.name %></strong> <small>(<%= @stock.ticker %>)</small>
     </div>
     <div class="card-body">
-      <h5 class="card-title"><%= @stock.last_price %> USD</h5>
+      <h5 class="card-title"><%= number_with_delimiter @stock.last_price, locale: :de %> USD</h5>
       <% if current_user.under_stock_limit? && current_user.can_track_stock?(@stock.ticker) %>
         <%= link_to 'add to portfolio', user_stocks_path(ticker: @stock.ticker), method: :post, class: "btn btn-sm btn-primary" %>
       <% else %>
